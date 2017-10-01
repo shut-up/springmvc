@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd    
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd    
+            http://www.springframework.org/schema/mvc 
+            http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd    
+            http://www.springframework.org/schema/util 
+            http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+            
+     <!-- 处理器handler配置，此处的name的值则为url -->
+     <bean name="/queryItems.action" class="cn.parker.ssm.controller.ItemsController"/>	
+            
+   	<!-- 处理器映射器 
+   		根据bean的name作为url进行查找Handler， 所以需要在配置handler时指定beanname（即url） -->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />    
+		 
+     <!-- 处理器适配器,所有处理器适配器都实现了HandlerAdapter接口（前端控制器识别适配器的依据） -->
+     <bean	class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> 
+     
+     <!-- 视图解析器 
+     	解析jsp视图，默认使用jstl标签，classpath必须有就是jstl的包-->
+     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+            
+</beans>
