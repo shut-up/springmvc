@@ -14,8 +14,21 @@
             http://www.springframework.org/schema/util 
             http://www.springframework.org/schema/util/spring-util-3.2.xsd">
             
+     <!-- 注解的处理器适配器 -->
+     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+     <!-- 注解的处理器映射器 -->
+     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+     <!-- 注解的Handler配置 -->
+     <bean class="cn.parker.ssm.controller.ItemsController3"/>	
+            
+     <!-- 使用mvc:annotation-driven可以代替上方适配器和映射器的配置
+     	且mvc:annotation-driven默认加载很多参数绑定方法，如默认加载json转换解析器
+     	推荐开发使用 -->
+     <!-- <mvc:annotation-driven></mvc:annotation-driven> -->
+            
+            
      <!-- 处理器handler配置，此处的name的值则为url -->
-     <bean id="1temsController1" name="/queryItems.action" class="cn.parker.ssm.controller.ItemsController"/>	
+     <bean id="1temsController1" name="/queryItems_test.action" class="cn.parker.ssm.controller.ItemsController"/>	
      <!-- 另外一个处理器配置 -->	
      <bean id="1temsController2" class="cn.parker.ssm.controller.ItemsController2"/>	
             
