@@ -15,14 +15,31 @@
             http://www.springframework.org/schema/util/spring-util-3.2.xsd">
             
      <!-- 处理器handler配置，此处的name的值则为url -->
-     <bean name="/queryItems.action" class="cn.parker.ssm.controller.ItemsController"/>	
+     <bean id="1temsController1" name="/queryItems.action" class="cn.parker.ssm.controller.ItemsController"/>	
+     <!-- 另外一个处理器配置 -->	
+     <bean id="1temsController2" class="cn.parker.ssm.controller.ItemsController2"/>	
             
    	<!-- 处理器映射器 
    		根据bean的name作为url进行查找Handler， 所以需要在配置handler时指定beanname（即url） -->
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />    
+	<!-- 另外一个映射器 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+			<!-- 对id为1temsController1的ocntroller进行映射， prop key为url地址，可配置多个url  -->
+				<prop key="/queryItems1.action">1temsController1</prop>
+				<prop key="/queryItems2.action">1temsController1</prop>
+				<prop key="/queryItems3.action">1temsController2</prop>
+			</props>
+		</property>
+	</bean>
 		 
-     <!-- 处理器适配器,所有处理器适配器都实现了HandlerAdapter接口（前端控制器识别适配器的依据） -->
+     <!-- 处理器适配器,所有处理器适配器都实现了HandlerAdapter接口（前端控制器识别适配器的依据）
+     	该适配器要求编写的Handler实现Controller接口 -->
      <bean	class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> 
+     <!-- 另外一个处理器适配器 
+     	该适配器要求编写的 Handler实现HttpRequestHandler接口-->
+     <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
      
      <!-- 视图解析器 
      	解析jsp视图，默认使用jstl标签，classpath必须有就是jstl的包-->
