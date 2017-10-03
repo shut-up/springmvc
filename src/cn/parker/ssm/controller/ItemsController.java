@@ -35,7 +35,7 @@ public class ItemsController implements Controller{
 		//填充数据,相当于request.setAttribute,在jsp页面通过${itemsList }取出数据
 		modelAndView.addObject("itemsList", itemsList);
 		//指定试图
-		modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
+		modelAndView.setViewName("items/itemsList");
 		
 		return modelAndView;
 	}
